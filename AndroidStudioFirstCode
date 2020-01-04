@@ -1,0 +1,81 @@
+//Creating a Relative Layout with an Edit text and Button on it.
+
+package com.thenewboston.smartbutton;
+
+import.support.v7.app.ActionBarActivity;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+//import android.view.View;
+import android.widgets.Button;
+//import android.widgets.TextView;
+import android.widget.RelativeLayout;
+import android.graphics.Color;
+import android.widgets.EditText;
+import android.content.res.Resources;
+import android.util.TypedValue;
+
+public class MainActivity extends ActionBarActivity {
+	
+	@Override
+	protected void onCreate(bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		//setContentView(R.layout.activity_main);
+		
+		//adding widgets
+		RelativeLayout skdLayout = new RelativeLayout(this); //add layout
+		skdLayout.setBackgroundColor(Color.GREEN);
+		
+		Button redButton = new Button(this); //add Button
+		redButton.addText("Click Me");
+		redButton.setBackgroundColor(Color.RED);
+		
+		EditText userName = new EditText(this); // add EditText
+		
+		//adding ID to the widgets
+		redButton.setId(1);
+		userName.setId(2);
+		
+		//adding a container to add rule
+		RelativeLayout.layoutParams skdParams = new RelativeLayout.layoutParams( 
+			RelativeLayout.layoutParams.WRAP_CONTENT; //getting the width of the screen automatically
+			RelativeLayout.layoutParams.WRAP_CONTENT; //getting the height of the screen automatically
+		);
+		
+		RelativeLayout.layoutParams userNameDetails = new RelativeLayout.layoutParams( 
+			RelativeLayout.layoutParams.WRAP_CONTENT; //getting the width of the screen automatically
+			RelativeLayout.layoutParams.WRAP_CONTENT; //getting the height of the screen automatically
+		);
+		
+		//converting dip to pixels
+		Resources r = getResources();
+		int px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 200, r.getDisplayMetrics());
+		
+		//adding rule to the container
+		skdParams.addRule(RelativeLayout.CENTER_VERTICAL);
+		skdParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
+		
+		userNameDetails.addRule(RelativeLayout.ABOVE, redButton.getId());
+		userNameDetails.addRule(RelativeLayout.CENTER_HORIZONTAL);
+		userNameDetails.addMargins(0,0,0,50);
+		username.setWidth(px);
+		
+		skdLayout.addView(redButton, skdParams); // add button and container (containing rule) to layout
+		skdLayout.addView(userName, userNameDetails); // add user name and container (containing rule) to layout
+		
+		setContentView(skdLayout); // add layout to display screen
+}	}
+
+	@Override
+	public boolean onCreateOptionMenu(Menu menu) {
+		//Inflate the menu; adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.menu_main,menu);
+		return true;
+}
+	@Override
+	public boolean onOptionItemSelected(MenuItem item) {
+			//Handle action bar item clicks here. The action bar will 
+			//automatically handle clicks on the Home/up button, so long
+			//as you specify a parent activity in AndroidManifest.xml.
+			int id = item.getItemId();
+}
